@@ -1,4 +1,4 @@
-customer-segmentation
+Customer-Segmentation
 Overview
 This project implements a data-driven customer classification system for the wholesale and retail distribution domain. The objective is to automatically segment customers into HORECA (Hotels, Restaurants, Cafés) and Retail Stores based on historical purchase data across product categories such as fresh food, dairy, groceries, frozen items, detergents, and delicatessen products.
 
