@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wholesale Customer Predictor</title>
+
+    <!-- Professional Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Inter', sans-serif;
+        }
+
+        /* Clean Corporate Background */
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            background:#eef2f7; /* Soft professional grey */
+        }
+
+        /* Main Card */
+        .container{
+            width:470px;
+            padding:36px;
+            border-radius:12px;
+
+            background:#ffffff;
+            box-shadow:0 20px 50px rgba(0,0,0,0.08);
+        }
+
+        h2{
+            text-align:center;
+            font-size:22px;
+            font-weight:600;
+            margin-bottom:26px;
+            color:#0f172a;
+        }
+
+        label{
+            font-size:13px;
+            font-weight:500;
+            color:#334155;
+        }
+
+        input{
+            width:100%;
+            padding:11px;
+            margin-top:6px;
+            margin-bottom:17px;
+
+            border-radius:7px;
+            border:1px solid #d1d5db;
+            font-size:14px;
+            transition:0.2s;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#2563eb;
+            box-shadow:0 0 0 3px rgba(37,99,235,0.12);
+        }
+
+        /* Professional Button */
+        button{
+            width:100%;
+            padding:13px;
+            border:none;
+            border-radius:8px;
+
+            background:#2563eb;
+            color:white;
+            font-size:15px;
+            font-weight:600;
+
+            cursor:pointer;
+            transition:0.25s;
+        }
+
+        button:hover{
+            background:#1e40af;
+        }
+
+        /* Result Box */
+        .result{
+            margin-top:24px;
+            padding:18px;
+
+            border-radius:8px;
+            background:#f1f5f9;
+            border-left:5px solid #2563eb;
+        }
+
+        .result p{
+            font-size:14px;
+            margin-bottom:8px;
+      
+        }
+
+        .confidence{
+            color:#08cb22;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Wholesale Customer Classification</h2>
+
+    <form action="/predict" method="post">
+
+        <label>Fresh (₹3 – ₹112151)</label>
+        <input type="number" name="Fresh" min="3" max="112151" required>
+
+        <label>Milk (₹55 – ₹73498)</label>
+        <input type="number" name="Milk" min="55" max="73498" required>
+
+        <label>Grocery (₹3 – ₹92780)</label>
+        <input type="number" name="Grocery" min="3" max="92780" required>
+
+        <label>Frozen (₹25 – ₹60869)</label>
+        <input type="number" name="Frozen" min="25" max="60869" required>
+
+        <label>Detergents & Paper (₹3 – ₹40827)</label>
+        <input type="number" name="Detergents_Paper" min="3" max="40827" required>
+
+        <label>Delicassen (₹3 – ₹47943)</label>
+        <input type="number" name="Delicassen" min="3" max="47943" required>
+
+        <button type="submit">Predict Customer Type</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <p><b>Customer Type:</b> {{ prediction }}</p>
+        <p class="confidence">Confidence: {{ confidence }}</p>
+        <p><b>Marketing Recommendation:</b><br>{{ suggestion | safe }}</p>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
